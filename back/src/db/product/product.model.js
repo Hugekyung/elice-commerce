@@ -11,6 +11,11 @@ class Product {
         return product;
     }
 
+    static async findByQuery(categoryQuery) {
+        const product = await ProductModel.find(categoryQuery);
+        return product;
+    }
+
     static async findAll() {
         const products = await ProductModel.find({});
         return products;
@@ -24,7 +29,7 @@ class Product {
         const updateProduct = await ProductModel.findOneAndUpdate(
             filteredById,
             updateData,
-            option
+            option,
         );
 
         return updateProduct;

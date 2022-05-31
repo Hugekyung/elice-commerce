@@ -6,13 +6,12 @@ class User {
         return createdNewUser;
     }
 
-    static async findByEmail({ email }) {
-        const user = await UserModel.findOne({ email });
+    static async findByUserId({ userId }) {
+        const user = await UserModel.findOne({ userId });
         return user;
     }
-
-    static async findById({ userId }) {
-        const user = await UserModel.findOne({ userId });
+    static async findCartsByUserId({ userId }) {
+        const user = await UserModel.findOne({ userId }, {cart : 1, _id : 0});
         return user;
     }
 
@@ -29,7 +28,7 @@ class User {
         const updatedUser = await UserModel.findOneAndUpdate(
             filteredById,
             updateData,
-            option
+            option,
         );
 
         return updatedUser;
